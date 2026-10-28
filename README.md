@@ -89,6 +89,38 @@ The design is a proposal; its uniqueness against other learners' submissions sho
 
 # 3. Technical Approach
 
+## Visual Overview
+
+<table>
+  <tr>
+    <td align="center" width="33%">
+      <img src="https://images.pexels.com/photos/37687763/pexels-photo-37687763.jpeg" alt="Farmer using a smartphone in an agricultural field" width="100%" />
+      <br/>
+      <strong>1. Digital Farmer Access</strong>
+      <br/>
+      Farmers register, list produce and manage orders.
+    </td>
+    <td align="center" width="33%">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Tomatos_ready_for_dispatch.jpg" alt="Tomato crates prepared for dispatch from a farm" width="100%" />
+      <br/>
+      <strong>2. Produce Aggregation</strong>
+      <br/>
+      Orders are combined and produce is prepared for collection.
+    </td>
+    <td align="center" width="33%">
+      <img src="https://raw.githubusercontent.com/reinterpretcat/vrp/master/docs/resources/vrp-example.png" alt="Illustrative vehicle routing visualization with multiple delivery routes" width="100%" />
+      <br/>
+      <strong>3. Smart Route Planning</strong>
+      <br/>
+      Delivery routes are planned to reduce unnecessary travel.
+    </td>
+  </tr>
+</table>
+
+**Image credits:** [Pexels — Farmer using a smartphone](https://www.pexels.com/photo/man-using-smartphone-in-rice-field-outdoors-37687763/), [Phadke09 — Tomatoes ready for dispatch (CC BY-SA 4.0)](https://commons.wikimedia.org/wiki/File:Tomatos_ready_for_dispatch.jpg), and [Vehicle Routing Problem Solver — Route visualization (Apache-2.0 repository)](https://github.com/reinterpretcat/vrp).
+
+*These images demonstrate relevant agricultural and logistics concepts; they do not represent a deployed FarmBridge Direct system.*
+
 ## Technologies to Be Used
 
 | Component | Proposed Technology | Purpose |
@@ -102,45 +134,47 @@ The design is a proposal; its uniqueness against other learners' submissions sho
 | Payments | UPI through an authorized payment integration | Support traceable digital payments |
 | Deployment | Cloud hosting with HTTPS, database backups and role-based access | Provide secure access and reliable service |
 
-These are proposed technologies for implementation. The first prototype can use sample data and simulated payments. Real market-data integrations and payment processing can be added after the required access and permissions are arranged.
+These are proposed technologies for implementation. The initial prototype can use sample data and simulated payments. Real market-data integrations and payment processing can be introduced after the required access and permissions are arranged.
 
 ## Methodology and Implementation Process
 
 ### Step 1 — Registration
 
-Create separate accounts for farmers, FPOs, consumers, bulk buyers, and logistics partners.
+Create separate accounts for farmers, Farmer Producer Organisations (FPOs), consumers, bulk buyers and logistics partners.
 
 ### Step 2 — Produce Listing
 
-Farmers enter crop details, quantity, expected availability, location, quality grade, and asking price.
+Farmers enter crop details, available quantity, expected harvest date, location, quality grade and asking price.
 
 ### Step 3 — Buyer Ordering
 
-Buyers search for produce, specify quantities, and choose delivery preferences.
+Buyers search for produce, select quantities and specify their preferred delivery location and time window.
 
-### Step 4 — Order Aggregation
+### Step 4 — Neighbourhood Order Aggregation
 
-The platform groups compatible orders by crop, location, and delivery window.
+The platform groups compatible orders by produce type, location and delivery window. Smaller orders can be combined into practical bulk shipments.
 
-### Step 5 — Demand Prediction
+### Step 5 — AI-Based Demand Forecasting
 
-A forecasting module estimates demand for upcoming periods. During the initial pilot, it can use seasonal averages and confirmed orders. Machine-learning forecasts can be introduced as sufficient data becomes available.
+A forecasting module estimates future demand using historical orders, seasonal patterns and confirmed buyer requirements.
+
+During the initial pilot, the system can use confirmed orders and seasonal averages. Machine-learning forecasts can be introduced when sufficient reliable data becomes available.
 
 ### Step 6 — Price and Order Matching
 
-The system compares farmer offers with buyer demand and displays the complete cost breakdown before the order is confirmed.
+The platform compares farmer offers with buyer demand and displays a transparent cost breakdown, including produce price, logistics charges and applicable platform fees.
 
-### Step 7 — Logistics Optimization
+### Step 7 — Logistics and Route Optimization
 
-Suitable collection points, vehicles, and delivery sequences are selected based on capacity, distance, time, and freshness requirements.
+The system assigns suitable collection points and delivery partners. Route planning considers distance, vehicle capacity, delivery deadlines and produce freshness requirements.
 
 ### Step 8 — Delivery and Settlement
 
-Buyers confirm delivery, payment status is updated, and the farmer receives a clear transaction statement.
+Buyers confirm receipt of produce, delivery status is updated and transaction records are maintained. Farmers receive a clear statement of their agreed selling price and applicable deductions.
 
 ## Technical Approach Flowchart
 
-The following diagram illustrates the proposed system from registration to delivery and payment.
+The following diagram represents the proposed end-to-end workflow.
 
 ```mermaid
 flowchart TD
@@ -148,7 +182,7 @@ flowchart TD
     B["Consumers and Bulk Buyers<br/>Place orders"] --> C
 
     C --> D["Price Transparency Engine<br/>Market reference prices"]
-    C --> E["Neighbourhood Demand Pool<br/>Group nearby orders"]
+    C --> E["Neighbourhood Demand Pool<br/>Group compatible orders"]
 
     E --> F["Demand Forecasting<br/>Estimate future demand"]
 
@@ -165,9 +199,25 @@ flowchart TD
 
 **Figure 1:** Proposed FarmBridge Direct technical workflow.
 
+## System Architecture
+
+The system consists of four major layers:
+
+1. **Presentation Layer:** Provides responsive dashboards for farmers, buyers and logistics partners.
+2. **Application Layer:** Handles registration, product listings, demand aggregation, order matching and transaction processing.
+3. **Intelligence and Logistics Layer:** Forecasts demand, identifies compatible orders and calculates efficient delivery routes.
+4. **Data Layer:** Stores user information, produce listings, market references, orders, delivery updates and payment records.
+
 ## Implementation Methodology
 
-Develop the marketplace first, then add order aggregation, price transparency, forecasting, and route optimization. Test each module with sample transactions before conducting a small pilot with real farmers and buyers.
+Development will proceed in stages:
+
+1. Build registration, produce listings and buyer ordering.
+2. Implement neighbourhood order aggregation and transparent price breakdowns.
+3. Add basic demand forecasting and route optimization.
+4. Test the system with sample farmers, buyers and orders.
+5. Conduct a limited pilot with participating farmers or an FPO.
+6. Measure farmer net earnings, buyer costs, delivery efficiency and food loss before expanding the platform.
 
 ---
 
